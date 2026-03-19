@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Euro Tulum — Full Deliverables Tracker</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: #0a0a0a;
+    color: #e0e0e0;
+    line-height: 1.6;
+  }
+
+  .container {
+    max-width: 840px;
+    margin: 0 auto;
+    padding: 48px 32px 64px;
+  }
+
+  .header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid #1a1a1a;
+  }
+
+  .header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -0.5px;
+    margin-bottom: 8px;
+  }
+
+  .header .subtitle {
+    font-size: 14px;
+    color: #666;
+  }
+
+  .header .subtitle span { color: #4ade80; }
+
+  .owner-section {
+    margin-bottom: 48px;
+  }
+
+  .owner-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .owner-badge {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    padding: 5px 14px;
+    border-radius: 6px;
+    white-space: nowrap;
+  }
+
+  .badge-shaw { background: #0f2418; color: #4ade80; border: 1px solid #1a3a25; }
+  .badge-yura { background: #1a1a2a; color: #818cf8; border: 1px solid #2a2a4a; }
+  .badge-joint { background: #2a1a0a; color: #fb923c; border: 1px solid #3a2a1a; }
+
+  .owner-header h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .owner-count {
+    font-size: 13px;
+    color: #555;
+    margin-left: auto;
+  }
+
+  .deliverable {
+    background: #111;
+    border: 1px solid #1a1a1a;
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 10px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    transition: border-color 0.2s;
+  }
+
+  .deliverable:hover {
+    border-color: #2a2a2a;
+  }
+
+  .d-number {
+    font-size: 13px;
+    font-weight: 700;
+    color: #333;
+    background: #1a1a1a;
+    min-width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .d-content { flex: 1; }
+
+  .d-content h3 {
+    font-size: 15px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 4px;
+  }
+
+  .d-content p {
+    font-size: 13px;
+    color: #888;
+    margin: 0;
+  }
+
+  .d-status {
+    flex-shrink: 0;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 4px 10px;
+    border-radius: 6px;
+    margin-top: 2px;
+    white-space: nowrap;
+  }
+
+  .status-done { background: #0f2418; color: #4ade80; }
+  .status-pending { background: #1a1a1a; color: #666; }
+  .status-conditional { background: #1a1a20; color: #818cf8; }
+
+  .sub-items {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #1a1a1a;
+  }
+
+  .sub-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 3px 0;
+    font-size: 13px;
+    color: #777;
+  }
+
+  .sub-item::before {
+    content: '\2192';
+    color: #333;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .sub-item strong { color: #bbb; font-weight: 500; }
+
+  .spec-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #1a1a1a;
+  }
+
+  .spec-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    padding: 4px 10px;
+    background: #0a0a0a;
+    border-radius: 6px;
+  }
+
+  .spec-label { color: #555; }
+  .spec-value { color: #bbb; font-weight: 500; font-family: 'SF Mono', 'Fira Code', monospace; }
+
+  .tier-badge-inline {
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 1px 6px;
+    border-radius: 3px;
+    margin-left: 6px;
+  }
+
+  .t1 { background: #1a2a1a; color: #4ade80; }
+  .t2 { background: #1a1a2a; color: #818cf8; }
+
+  .divider {
+    border: none;
+    border-top: 1px solid #1a1a1a;
+    margin: 48px 0;
+  }
+
+  .summary-bar {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 48px;
+  }
+
+  .summary-card {
+    background: #111;
+    border: 1px solid #1a1a1a;
+    border-radius: 10px;
+    padding: 16px;
+    text-align: center;
+  }
+
+  .summary-card .number {
+    font-size: 28px;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .summary-card .label {
+    font-size: 11px;
+    color: #555;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 2px;
+  }
+
+  .note-card {
+    background: #111;
+    border: 1px solid #1a1a1a;
+    border-radius: 10px;
+    padding: 16px 20px;
+    font-size: 12px;
+    color: #666;
+    margin-top: 10px;
+  }
+
+  .note-card strong { color: #999; }
+
+  .footer {
+    text-align: center;
+    margin-top: 48px;
+    padding-top: 28px;
+    border-top: 1px solid #1a1a1a;
+    font-size: 13px;
+    color: #444;
+  }
+
+  @media (max-width: 600px) {
+    .container { padding: 28px 18px; }
+    .summary-bar { grid-template-columns: 1fr; }
+    .spec-grid { grid-template-columns: 1fr; }
+    .deliverable { flex-direction: column; gap: 10px; }
+    .d-status { align-self: flex-start; }
+    .owner-header { flex-wrap: wrap; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <h1>Euro Tulum — Deliverables Tracker</h1>
+    <p class="subtitle">Shaw Cole + Arie &nbsp;·&nbsp; <span>March 18, 2026</span></p>
+  </div>
+
+  <div class="summary-bar">
+    <div class="summary-card">
+      <div class="number">9</div>
+      <div class="label">Shaw's Items</div>
+    </div>
+    <div class="summary-card">
+      <div class="number">9</div>
+      <div class="label">Arie's Items</div>
+    </div>
+    <div class="summary-card">
+      <div class="number">2</div>
+      <div class="label">Joint Items</div>
+    </div>
+  </div>
+
+  <!-- ========== SHAW ========== -->
+  <div class="owner-section">
+    <div class="owner-header">
+      <span class="owner-badge badge-shaw">Shaw</span>
+      <h2>Shaw's Deliverables</h2>
+      <span class="owner-count">9 items</span>
+    </div>
+
+    <div class="deliverable">
+      <div class="d-number">1</div>
+      <div class="d-content">
+        <h3>Fireflies Call Transcript</h3>
+        <p>Send Yura the full recording + transcript from the Mar 18 strategy call so he can reference details.</p>
+      </div>
+      <span class="d-status status-pending">To Send</span>
+    </div>
+
+    <div class="deliverable">
+      <div class="d-number">2</div>
+      <div class="d-content">
+        <h3>3 Budget Tier Options</h3>
+        <p>Starter ($500/mo), Growth ($1,200/mo), Full Send ($2,000/mo) with expected results per tier.</p>
+      </div>
+      <span class="d-status status-done">Done</span>
+    </div>
+
+    <div class="deliverable">
+      <div class="d-number">3</div>
+      <div class="d-content">
+        <h3>One-Pager Asset Checklist</h3>
+        <p>Complete list of all ad sizes, landing page requirements, and decisions Yura needs to make.</p>
+      </div>
+      <span class="d-status status-done">Done</span>
+    </div>
+
+    <div class="deliverable">
+      <div class="d-number">4</div>
+      <div class="d-content">
+        <h3>Intent-Based Audience Data</h3>
+        <p>Weekly-refreshing list of US executives (CXO, 30-50, 11-100 employees) searching "plant medicine retreat." ~48,776 prospects per pull.</p>
+      </div>
+      <span class="d-status status-pending">On Launch</span>
+    </div>
+
+    <div class="deliverable">
+      <div class="d-number">5</div>
+      <div class="d-content">
+        <h3>DSP Campaign Setup + Management</h3>
+        <p>Configure demand-side platform campaign. Display ads across NYT, Pinterest, apps, and thousands of web placements. Ongoing optimization.</p>
+      </div>
+      <span class="d-status status-pending">On Launch</span>
+    </div>
+
+    <div class="deliverable">
+      <div class="d-number">6</div>
+      <div class="d-content">
+        <h3>Meta Custom Audience Sync</h3>
+        <p>Sync intent-data audience list directly into Meta as a custom audience so ads hit the exact right people, not the algorithm's guess.</p>
+      </div>
+      <span class="d-status status-pending">On Launch</span>
+    </div>
+
+    <div class="deliverable">
+      <div class="d-number">7</div>
+      <div class="d-content">
+        <h3>Campaign Strategy + Optimization</h3>
+        <p>Ongoing campaign management, A/B testing, budget allocation across channels, and performance reporting.</p>
+      </div>
+      <span class="d-status status-pending">Ongoing</span>
+    </div>
+
+    <div class="deliverable">
+      <div class="d-number">8</div>
+      <div class="d-content">
+        <h3>Email Infrastructure Guidance</h3>
+        <p>If Yura chooses email: domain selection, warm-up strategy, sending platform setup, and cold outreach templates.</p>
+      </div>
+      <span class="d-status status-conditional">If Email = Yes</span>
+    </div>
+
+    <div class="deliverable">
+      <div class="d-number">9</div>
+      <div class="d-content">
+        <h3>Ad Copy</h3>
+        <p>Write ad copy together with Yura based on the executive avatar. Headlines, CTAs, and email copy (if applicable).</p>
+      </div>
+      <span class="d-status status-pending">Pending</span>
+    </div>
+
+    <div class="note-card">
+      <strong>Pricing:</strong> All services provided at no charge until Yura starts booking clients. Then data cost kicks in: $500/mo (1 audience), $1,000/mo (3), $1,500/mo (5).
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ========== YURA ========== -->
+  <div class="owner-section">
+    <div class="owner-header">
+      <span class="owner-badge badge-yura">Arie</span>
+      <h2>Arie's Deliverables</h2>
+      <span class="owner-count">9 items</span>
+    </div>
+
+    <div class="deliverable">
+      <div class="d-number">1</div>
+      <div class="d-content">
+        <h3>Choose a CRM</h3>
+        <p>One place to manage all leads, conversations, and bookings. Firebase is the backend, not a CRM.</p>
+        <div class="sub-items">
+          <div class="sub-item"><strong>Recommendation:</strong> Go High Level (~$10/mo through Shaw's partner)</div>
+          <div class="sub-item">Free alternatives exist, but GHL is the best fit for this use case</div>
+        </div>
+      </div>
+      <span class="d-status status-pending">Decision</span>
+    </div>
+
+    <div class="deliverable">
+      <div class="d-number">2</div>
+      <div class="d-content">
+        <h3>Pick a Budget Tier</h3>
+        <p>Nail down monthly ad spend commitment. This determines which channels go live.</p>
+        <div class="sub-items">
+          <div class="sub-item"><strong>Starter ~$500/mo</strong> &mdash; DSP + Email</div>
+          <div class="sub-item"><strong>Growth ~$1,200/mo</strong> &mdash; Meta + DSP (best bang for buck)</div>
+          <div class="sub-item"><strong>Full Send ~$2,000/mo</strong> &mdash; Meta + DSP + Email (max coverage)</div>
+        </div>
+      </div>
+      <span class="d-status status-pending">Decision</span>
+    </div>
+
+    <div class="deliverable">
+      <div class="d-number">3</div>
+      <div class="d-content">
+        <h3>Email Decision &mdash; Yes or No</h3>
+        <p>This affects the launch timeline. Email adds 2-3 weeks for domain purchase and warm-up.</p>
+        <div class="sub-items">
+          <div class="sub-item"><strong>Yes:</strong> Buy 2-3 domains, warm up accounts, delays launch 2-3 weeks</div>
+          <div class="sub-item"><strong>No:</strong> Launch faster with Meta + DSP only. Add email later anytime.</div>
+        </div>
+      </div>
+      <span class="d-status status-pending">Decision</span>
+    </div>
+
+    <div class="deliverable">
+      <div class="d-number">4</div>
+      <div class="d-content">
+        <h3>Landing Page</h3>
+        <p>Build in FlutterFlow or Base44. This is the #1 priority &mdash; nothing launches without it.</p>
+        <div class="sub-items">
+          <div class="sub-item">Headline + subhead</div>
+          <div class="sub-item">Retreat details + itinerary</div>
+          <div class="sub-item">Pricing options</div>
+          <div class="sub-item">High-quality photos</div>
+          <div class="sub-item">Testimonials</div>
+          <div class="sub-item">Booking CTA &rarr; WhatsApp or CRM form</div>
+        </div>
+      </div>
+      <span class="d-status status-pending">Build</span>
+    </div>
+
+    <div class="deliverable">
+      <div class="d-number">5</div>
+      <div class="d-content">
+        <h3>Retreat Page on Euro Tulum Website</h3>
+        <p>Dedicated retreat page with details, pricing, and booking flow. Yura estimated "2 days" to complete.</p>
+      </div>
+      <span class="d-status status-pending">Build</span>
+    </div>
+
+    <div class="deliverable">
+      <div class="d-number">6</div>
+      <div class="d-content">
+        <h3>12 Display Ad Creatives</h3>
+        <p>6 sizes &times; 2 variations each. Each ad needs: Euro Tulum logo, strong headline, 1 high-quality photo, clear CTA. Keep text minimal.</p>
+        <div class="spec-grid">
+          <div class="spec-row">
+            <span class="spec-label">Medium Rectangle <span class="tier-badge-inline t1">T1</span></span>
+            <span class="spec-value">300&times;250</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-label">Leaderboard <span class="tier-badge-inline t1">T1</span></span>
+            <span class="spec-value">728&times;90</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-label">Mobile Banner <span class="tier-badge-inline t1">T1</span></span>
+            <span class="spec-value">320&times;50</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-label">Wide Skyscraper <span class="tier-badge-inline t2">T2</span></span>
+            <span class="spec-value">160&times;600</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-label">Half-Page <span class="tier-badge-inline t2">T2</span></span>
+            <span class="spec-value">300&times;600</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-label">Large Mobile <span class="tier-badge-inline t2">T2</span></span>
+            <span class="spec-value">320&times;100</span>
+          </div>
+        </div>
+      </div>
+      <span class="d-status status-pending">Build</span>
+    </div>
+
+    <div class="deliverable">
+      <div class="d-number">7</div>
+      <div class="d-content">
+        <h3>Meta Ad Creative</h3>
+        <p>Choose one option for the Meta campaign:</p>
+        <div class="sub-items">
+          <div class="sub-item"><strong>Option A &mdash; Video (60-90 sec):</strong> Property walkthrough, ceremony glimpse, or testimonial. Best conversion.</div>
+          <div class="sub-item"><strong>Option B &mdash; Carousel (4-6 images):</strong> Images with captions. Faster to produce.</div>
+        </div>
+      </div>
+      <span class="d-status status-pending">Build</span>
+    </div>
+
+    <div class="deliverable">
+      <div class="d-number">8</div>
+      <div class="d-content">
+        <h3>Photos &amp; Images</h3>
+        <p>High-quality visuals for ads and landing page: property shots, ceremony scenes, jungle/nature, testimonials, facilitator portraits.</p>
+      </div>
+      <span class="d-status status-pending">Gather</span>
+    </div>
+
+    <div class="deliverable">
+      <div class="d-number">9</div>
+      <div class="d-content">
+        <h3>Buy 2-3 Domains for Email Warm-Up</h3>
+        <p>Only required if email campaign is chosen. Domains need 2-3 weeks of warm-up before cold outreach can begin.</p>
+      </div>
+      <span class="d-status status-conditional">If Email = Yes</span>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ========== JOINT ========== -->
+  <div class="owner-section">
+    <div class="owner-header">
+      <span class="owner-badge badge-joint">Joint</span>
+      <h2>Joint Deliverables</h2>
+      <span class="owner-count">2 items</span>
+    </div>
+
+    <div class="deliverable">
+      <div class="d-number">1</div>
+      <div class="d-content">
+        <h3>Saturday Mar 22 AM &mdash; Review Call</h3>
+        <p>Go/no-go review of all assets before Shaw's 2:30pm flight to France. If not ready, backup launch window is Mon-Wed Mar 24-26 (Shaw connects from France evenings).</p>
+      </div>
+      <span class="d-status status-pending">Scheduled</span>
+    </div>
+
+    <div class="deliverable">
+      <div class="d-number">2</div>
+      <div class="d-content">
+        <h3>Ad Copy Collaboration</h3>
+        <p>Write ad copy together based on the executive avatar &mdash; headlines, body copy, CTAs, and email sequences (if applicable).</p>
+      </div>
+      <span class="d-status status-pending">Together</span>
+    </div>
+  </div>
+
+  <div class="footer">
+    Euro Tulum Campaign &nbsp;&middot;&nbsp; Questions? Text Shaw anytime.
+  </div>
+
+</div>
+</body>
+</html>
