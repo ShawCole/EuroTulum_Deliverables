@@ -142,6 +142,10 @@
   .status-done { background: #0f2418; color: #4ade80; }
   .status-pending { background: #1a1a1a; color: #666; }
   .status-conditional { background: #1a1a20; color: #818cf8; }
+  .status-in-progress { background: #1a2a1a; color: #fbbf24; }
+  .status-decided { background: #0f1a2a; color: #60a5fa; }
+  .status-blocked { background: #2a1a1a; color: #f87171; }
+  .status-na { background: #111; color: #444; text-decoration: line-through; }
 
   .sub-items {
     margin-top: 10px;
@@ -291,12 +295,12 @@
 
   <div class="header">
     <h1>Yura Retreats — Deliverables Tracker</h1>
-    <p class="subtitle">Shaw Cole + Arie &nbsp;·&nbsp; <span>March 18, 2026</span></p>
+    <p class="subtitle">Shaw Cole + Arie &nbsp;·&nbsp; <span>Updated March 21, 2026</span></p>
   </div>
 
   <div class="summary-bar">
     <div class="summary-card">
-      <div class="number">9</div>
+      <div class="number">10</div>
       <div class="label">Shaw's Items</div>
     </div>
     <div class="summary-card">
@@ -314,7 +318,7 @@
     <div class="owner-header">
       <span class="owner-badge badge-shaw">Shaw</span>
       <h2>Shaw's Deliverables</h2>
-      <span class="owner-count">9 items</span>
+      <span class="owner-count">10 items</span>
     </div>
 
     <div class="deliverable">
@@ -385,9 +389,9 @@
       <div class="d-number">8</div>
       <div class="d-content">
         <h3>Email Infrastructure Guidance</h3>
-        <p>If Arie chooses email: domain selection, warm-up strategy, sending platform setup, and cold outreach templates.</p>
+        <p>Arie decided no email for now. Can revisit later.</p>
       </div>
-      <span class="d-status status-conditional">If Email = Yes</span>
+      <span class="d-status status-na">N/A</span>
     </div>
 
     <div class="deliverable">
@@ -397,6 +401,15 @@
         <p>Write ad copy together with Arie based on the executive avatar. Headlines, CTAs, and email copy (if applicable).</p>
       </div>
       <span class="d-status status-pending">Pending</span>
+    </div>
+
+    <div class="deliverable">
+      <div class="d-number">10</div>
+      <div class="d-content">
+        <h3>GHL Signup Link / Code</h3>
+        <p>Arie asked for GHL connection on Mar 18. Followed up Mar 20. Still waiting.</p>
+      </div>
+      <span class="d-status status-blocked">Overdue</span>
     </div>
 
     <div class="note-card">
@@ -418,114 +431,74 @@
       <div class="d-number">1</div>
       <div class="d-content">
         <h3>Choose a CRM</h3>
-        <p>One place to manage all leads, conversations, and bookings. Firebase is the backend, not a CRM.</p>
+        <p>Wants Go High Level. Waiting on Shaw to send signup link/code (asked Mar 18, followed up Mar 20).</p>
         <div class="sub-items">
-          <div class="sub-item"><strong>Recommendation:</strong> Go High Level (~$10/mo through Shaw's partner)</div>
-          <div class="sub-item">Free alternatives exist, but GHL is the best fit for this use case</div>
+          <div class="sub-item"><strong>Decision:</strong> Go High Level (~$10/mo through Shaw's partner)</div>
         </div>
       </div>
-      <span class="d-status status-pending">Decision</span>
+      <span class="d-status status-blocked">Blocked on Shaw</span>
     </div>
 
     <div class="deliverable">
       <div class="d-number">2</div>
       <div class="d-content">
         <h3>Pick a Budget Tier</h3>
-        <p>Nail down monthly ad spend commitment. This determines which channels go live.</p>
+        <p>Between Starter and Growth. Final number TBD at next meeting.</p>
         <div class="sub-items">
-          <div class="sub-item"><strong>Starter ~$500/mo</strong> &mdash; DSP + Email</div>
+          <div class="sub-item"><strong>Starter ~$500/mo</strong> &mdash; DSP only (since no email)</div>
           <div class="sub-item"><strong>Growth ~$1,200/mo</strong> &mdash; Meta + DSP (best bang for buck)</div>
-          <div class="sub-item"><strong>Full Send ~$2,000/mo</strong> &mdash; Meta + DSP + Email (max coverage)</div>
         </div>
       </div>
-      <span class="d-status status-pending">Decision</span>
+      <span class="d-status status-decided">$500–$1,200</span>
     </div>
 
     <div class="deliverable">
       <div class="d-number">3</div>
       <div class="d-content">
         <h3>Email Decision &mdash; Yes or No</h3>
-        <p>This affects the launch timeline. Email adds 2-3 weeks for domain purchase and warm-up.</p>
-        <div class="sub-items">
-          <div class="sub-item"><strong>Yes:</strong> Buy 6-10 domains, warm up accounts, delays launch 2-3 weeks</div>
-          <div class="sub-item"><strong>No:</strong> Launch faster with Meta + DSP only. Add email later anytime.</div>
-        </div>
+        <p>Arie decided: <strong>"not the moment"</strong> for email. Launching with Meta + DSP only. Can add email later.</p>
       </div>
-      <span class="d-status status-pending">Decision</span>
+      <span class="d-status status-done">No</span>
     </div>
 
     <div class="deliverable">
       <div class="d-number">4</div>
       <div class="d-content">
         <h3>Landing Page</h3>
-        <p>Build in FlutterFlow or Base44. This is the #1 priority &mdash; nothing launches without it.</p>
-        <div class="sub-items">
-          <div class="sub-item">Headline + subhead</div>
-          <div class="sub-item">Retreat details + itinerary</div>
-          <div class="sub-item">Pricing options</div>
-          <div class="sub-item">High-quality photos</div>
-          <div class="sub-item">Testimonials</div>
-          <div class="sub-item">Booking CTA &rarr; WhatsApp or CRM form</div>
-        </div>
+        <p>Live at <a href="https://www.yuratulum.com/private-retreats" target="_blank" rel="noopener" style="color:#4ade80;">yuratulum.com/private-retreats</a>. Built Mar 19. Shaw to review.</p>
       </div>
-      <span class="d-status status-pending">Build</span>
+      <span class="d-status status-done">Done</span>
     </div>
 
     <div class="deliverable">
       <div class="d-number">5</div>
       <div class="d-content">
         <h3>Retreat Page on Yura Retreats Website</h3>
-        <p>Dedicated retreat page with details, pricing, and booking flow. Arie estimated "2 days" to complete.</p>
+        <p>Completed as part of landing page above &mdash; <a href="https://www.yuratulum.com/private-retreats" target="_blank" rel="noopener" style="color:#4ade80;">yuratulum.com/private-retreats</a></p>
       </div>
-      <span class="d-status status-pending">Build</span>
+      <span class="d-status status-done">Done</span>
     </div>
 
     <div class="deliverable">
       <div class="d-number">6</div>
       <div class="d-content">
         <h3>12 Display Ad Creatives</h3>
-        <p>6 sizes &times; 2 variations each. Each ad needs: Yura Retreats logo, strong headline, 1 high-quality photo, clear CTA. Keep text minimal.</p>
-        <div class="spec-grid">
-          <div class="spec-row">
-            <span class="spec-label">Medium Rectangle <span class="tier-badge-inline t1">T1</span></span>
-            <span class="spec-value">300&times;250</span>
-          </div>
-          <div class="spec-row">
-            <span class="spec-label">Leaderboard <span class="tier-badge-inline t1">T1</span></span>
-            <span class="spec-value">728&times;90</span>
-          </div>
-          <div class="spec-row">
-            <span class="spec-label">Mobile Banner <span class="tier-badge-inline t1">T1</span></span>
-            <span class="spec-value">320&times;50</span>
-          </div>
-          <div class="spec-row">
-            <span class="spec-label">Wide Skyscraper <span class="tier-badge-inline t2">T2</span></span>
-            <span class="spec-value">160&times;600</span>
-          </div>
-          <div class="spec-row">
-            <span class="spec-label">Half-Page <span class="tier-badge-inline t2">T2</span></span>
-            <span class="spec-value">300&times;600</span>
-          </div>
-          <div class="spec-row">
-            <span class="spec-label">Large Mobile <span class="tier-badge-inline t2">T2</span></span>
-            <span class="spec-value">320&times;100</span>
-          </div>
-        </div>
+        <p>Sent Mar 21 via <a href="https://drive.google.com/file/d/1Xu27_N1LRqR0syjfxvQlFXraRtHN3KZZ/view?usp=sharing" target="_blank" rel="noopener" style="color:#4ade80;">Google Drive</a>. Shaw to review.</p>
       </div>
-      <span class="d-status status-pending">Build</span>
+      <span class="d-status status-done">Done</span>
     </div>
 
     <div class="deliverable">
       <div class="d-number">7</div>
       <div class="d-content">
         <h3>Meta Ad Creative</h3>
-        <p>Choose one option for the Meta campaign:</p>
+        <p>Arie is working on this now (as of Mar 21).</p>
         <div class="sub-items">
-          <div class="sub-item"><strong>Option A &mdash; Video (60-90 sec):</strong> Property walkthrough, ceremony glimpse, or testimonial. Best conversion.</div>
-          <div class="sub-item"><strong>Option B &mdash; Carousel (4-6 images):</strong> Images with captions. Faster to produce.</div>
+          <div class="sub-item"><strong>Option A &mdash; Video (60-90 sec):</strong> Property walkthrough, ceremony glimpse, or testimonial.</div>
+          <div class="sub-item"><strong>Option B &mdash; Carousel (4-6 images):</strong> Images with captions.</div>
         </div>
       </div>
-      <span class="d-status status-pending">Build</span>
+      <span class="d-status status-in-progress">In Progress</span>
     </div>
 
     <div class="deliverable">
@@ -541,9 +514,9 @@
       <div class="d-number">9</div>
       <div class="d-content">
         <h3>Buy 6-10 Domains for Email Warm-Up</h3>
-        <p>Only required if email campaign is chosen. 6-10 domains need 2-3 weeks of warm-up before cold outreach can begin.</p>
+        <p>Not needed — Arie chose no email.</p>
       </div>
-      <span class="d-status status-conditional">If Email = Yes</span>
+      <span class="d-status status-na">N/A</span>
     </div>
   </div>
 
@@ -560,10 +533,10 @@
     <div class="deliverable">
       <div class="d-number">1</div>
       <div class="d-content">
-        <h3>Saturday Mar 22 AM &mdash; Review Call</h3>
-        <p>Go/no-go review of all assets before Shaw's 2:30pm flight to France. If not ready, backup launch window is Mon-Wed Mar 24-26 (Shaw connects from France evenings).</p>
+        <h3>Follow-Up Meeting</h3>
+        <p>Arie asked to meet Saturday Mar 21 morning (Calendly didn't have the slot). Shaw on flight as of Mar 21 afternoon. Needs rescheduling &mdash; Shaw connecting from France evenings.</p>
       </div>
-      <span class="d-status status-pending">Scheduled</span>
+      <span class="d-status status-blocked">Reschedule</span>
     </div>
 
     <div class="deliverable">
